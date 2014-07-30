@@ -17,7 +17,7 @@
 	<script type="application/javascript" src="inspector.js"></script>
 </head>
 <body>
-<form class="inspect_minilock_id">
+<form id="inspect_id_form">
 	<div id="secret_phrase" class="blank input">
 		<label>Secret Phrase</label>
 		<div class="text_container">
@@ -28,14 +28,15 @@
 			<label class="text n100">Minimum</label>
 			<label class="text n150">Great</label>
 			<label class="text n200">Wicked</label>
-			<label class="tick n000"></label>
-			<label class="tick n100"></label>
-			<label class="tick n150"></label>
-			<label class="tick n200"></label>
 			<label class="number n000"></label>
 			<label class="number n100">100</label>
 			<label class="number n150">150</label>
 			<label class="number n200">200</label>
+			<label class="tick n000"></label>
+			<label class="tick n100"></label>
+			<label class="tick n150"></label>
+			<label class="tick n200"></label>
+			<label class="tick n250"></label>
 			<div class="entropy_value"><label class="numeric_value"></label></div>
 		</div>
 	</div>
@@ -47,7 +48,7 @@
 		</div>
 	</div>
 
-	<div id="identity" class="blank">
+	<div id="identity" class="done">
 		<header>
 			<h1 class="calculating">Calculating...</h1>
 			<h1 class="done">Done in <a id="calculation_duration">1.9</a> seconds</h1>

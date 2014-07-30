@@ -5,93 +5,107 @@
 	src: url('inconsolata.woff') format('woff');
 }
 
-form.inspect_minilock_id {
-	position: fixed;
-	top: 0;
-	left: 0;
-	height: 600px;
-	width: 600px;
-	background: #111111;
+/* Basic styles */
+
+body {
+	margin: 0; padding: 45px;
+	background-color: hsl(0, 0%, 10%);
 	color: hsl(0, 0%, 50%);
-	font-family: 'Inconsolata', monospace;
-	font-size: 13px;
-	line-height: 15px;
 }
 
-form.inspect_minilock_id h1,
-form.inspect_minilock_id h2 {
+body div {
+	position: relative;
+	box-sizing: border-box;
+}
+
+body h1 {
+	margin: 0;
 	font-family: inherit;
 	font-size: inherit;
 	line-height: inherit;
 }
 
-form.inspect_minilock_id input,
-form.inspect_minilock_id textarea {
-	display: block;
-	box-sizing: border-box;
-	width: 100%;
-	font-size: 22px;
-	font-family: inherit;
-	background: black;
-	color: hsl(0, 0%, 85%);
-	border: 1px solid hsl(0, 0%, 20%);
-	padding: 9px;
-	line-height: 24px;
-	margin: 0;
-}
+/* Layout of the inspect id form */
 
-form.inspect_minilock_id textarea:focus {
-	color: hsl(0, 0%, 100%);
-}
-
-#secret_phrase,
-#address {
+#inspect_id_form {
 	position: relative;
-	margin: 50px;
+	margin: auto;
+	font-family: 'Inconsolata', monospace;
+	font-size: 13px;
+	line-height: 15px;
+	padding: 45px;
+	width: 500px;
+}
+#inspect_id_form div.input {
+	margin: 0px 0 45px;
+}
+#inspect_id_form #secret_phrase {
+	/*height: 130px;*/
+}
+#inspect_id_form #address {
+	height: 45px 0;
 }
 
-#secret_phrase {
-	height: 130px;
-}
+/* Styles shared by secret phrase and address inputs */
 
-#address {
-	height: 50px;
-}
-
-#secret_phrase div.text_container,
-#address div.text_container {
-	position: absolute;
-	display: block;
-	left: -10px;
-	right: -10px;
-	top: 0px;
-}
-
-#secret_phrase textarea {
-	width: 100%;
+div.input {
+	position: relative;
 }
 
 div.input > label {
 	position: absolute;
+	display: block;
 	top: -15px;
 }
 
-#secret_phrase textarea::-webkit-input-placeholder  {
+div.input > div.text_container {
+/*	position: absolute;*/
+	display: block;
+	margin-left: -10px;
+	margin-right: -10px;
+
+}
+
+div.input input,
+div.input textarea {
+	display: block;
+	box-sizing: border-box;
+	width: 100%;
+	margin: 0;
+	border: 1px solid hsl(0, 0%, 20%);
+	padding: 9px;
+	line-height: 24px;
+	font-size: 22px;
+	letter-spacing: 0.1px;
+	font-family: inherit;
+	color: hsl(0, 0%, 85%);
+	background-color: black;
+}
+div.input input:focus,
+div.input textarea:focus {
+	color: hsl(0, 0%, 100%);
+	transition: none;
+}
+div.input input::-webkit-input-placeholder,
+div.input textarea::-webkit-input-placeholder  {
 	color: hsla(0, 100%, 100%, 0);
 	transition: color 500ms linear;
 }
-
-#secret_phrase.showingPlaceholder textarea::-webkit-input-placeholder {
+div.input.showingPlaceholder input::-webkit-input-placeholder,
+div.input.showingPlaceholder textarea::-webkit-input-placeholder {
 	color: hsla(0, 100%, 100%, 0.5);
 	transition: none;
 }
 
+div.input textarea {
+	resize:vertical;
+}
+
+/* Secret phrase entropy graphic */
 
 #secret_phrase div.entropy {
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: 80px;
+	height: 45px;
+	margin: 10px 0 0;
 }
 
 #secret_phrase div.entropy * {
@@ -110,7 +124,6 @@ div.input > label {
 	top: 0px;
 	border-left: 1px solid hsl(0, 0%, 20%);
 	height: 10px;
-	margin-left: 1px;
 }
 
 #secret_phrase div.entropy label.number {
@@ -122,19 +135,21 @@ div.input > label {
 #secret_phrase div.entropy label.n100 { left: 200px; }
 #secret_phrase div.entropy label.n150 { left: 300px; }
 #secret_phrase div.entropy label.n200 { left: 400px; }
+#secret_phrase div.entropy label.n250 { left: 500px; }
 
 #secret_phrase div.entropy div.entropy_value {
+	z-index: -1;
 	height: 10px;
 	width: 0px;
 	position: absolute;
-	left: 0;
+	left: 0px;
 	top: 0px;
 	display:block;
-	background-color: hsla(128, 50%, 40%, 1);
+	background-color: hsla(128, 50%, 50%, 0.66);
 }
 
 #secret_phrase.blank div.entropy div.entropy_value {
-	background-color: hsla(128, 50%, 40%, 0.5);
+	background-color: hsla(128, 50%, 50%, 0.33);
 	transition: background-color 400ms linear;
 }
 
@@ -156,17 +171,19 @@ div.input > label {
 	opacity: 1;
 }
 
+/* Identity report */
+
 #identity {
-	margin: 50px;
+	margin: 0;
 }
 
 #identity > header {
-	min-height: 40px;
+	height: 20px;
 }
+
 #identity > header h1 {
 	display: none;
 }
-#identity.expired > header h1.expired,
 #identity.calculating > header h1.calculating,
 #identity.done > header h1.done {
 	display: block;
@@ -174,7 +191,6 @@ div.input > label {
 
 #identity > header div.progress {
 	height: 5px;
-	margin: 10px 0;
 }
 #identity > header div.progress > div {
 	height: 5px;
@@ -188,16 +204,13 @@ div.input > label {
 }
 #identity.calculating > header div.progress > div {
 	width: 100%;
-	transition: width 2.3s linear;
+	transition: width 2.5s linear;
 }
-
+#identity > h1 {
+	margin: 20px 0 5px;
+}
 #identity > div {
-	position: relative;
-	box-sizing: border-box;
-	font-size: 22px;
-	letter-spacing: 0.3px;
-	color: white;
-	margin: 10px 0 20px;
+	margin: 0;
 }
 #identity.blank > div,
 #identity.blank.expired > div,
@@ -216,6 +229,14 @@ div.input > label {
 #identity.expired > div {
 	opacity: 0.4;
 	transition: opacity 50ms linear;
+}
+
+#identity > #miniLockID {
+	position: relative;
+	box-sizing: border-box;
+	font-size: 22px;
+	letter-spacing: 0.1px;
+	color: white;
 }
 
 #identity > div.key {
