@@ -1,0 +1,13 @@
+{
+  "name": "miniLock-id-inspector",
+  "version": "0.0.0",
+  "description": "Inspect miniLock ID and keys generated from your secret phrase and email address.",
+  "main": "index.html",
+  "author": "undefined@undefined",
+  "license": "Public Domain",
+  "dependencies": {
+    "miniLock": "git+ssh://git@github.com:kaepora/miniLock.git",
+    "underscore": "^1.6.0",
+    "zepto": "0.0.4"
+  }
+}

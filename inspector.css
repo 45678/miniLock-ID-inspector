@@ -1,0 +1,225 @@
+@font-face {
+	font-family: 'Inconsolata';
+	font-style: normal;
+	font-weight: 400;
+	src: url('inconsolata.woff') format('woff');
+}
+
+form.inspect_minilock_id {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 600px;
+	width: 600px;
+	background: #111111;
+	color: hsl(0, 0%, 50%);
+	font-family: 'Inconsolata', monospace;
+	font-size: 13px;
+	line-height: 15px;
+}
+
+form.inspect_minilock_id h1,
+form.inspect_minilock_id h2 {
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
+}
+
+form.inspect_minilock_id input,
+form.inspect_minilock_id textarea {
+	display: block;
+	box-sizing: border-box;
+	width: 100%;
+	font-size: 22px;
+	font-family: inherit;
+	background: black;
+	color: hsl(0, 0%, 85%);
+	border: 1px solid hsl(0, 0%, 20%);
+	padding: 9px;
+	line-height: 24px;
+	margin: 0;
+}
+
+form.inspect_minilock_id textarea:focus {
+	color: hsl(0, 0%, 100%);
+}
+
+#secret_phrase,
+#address {
+	position: relative;
+	margin: 50px;
+}
+
+#secret_phrase {
+	height: 130px;
+}
+
+#address {
+	height: 50px;
+}
+
+#secret_phrase div.text_container,
+#address div.text_container {
+	position: absolute;
+	display: block;
+	left: -10px;
+	right: -10px;
+	top: 0px;
+}
+
+#secret_phrase textarea {
+	width: 100%;
+}
+
+div.input > label {
+	position: absolute;
+	top: -15px;
+}
+
+#secret_phrase textarea::-webkit-input-placeholder  {
+	color: hsla(0, 100%, 100%, 0);
+	transition: color 500ms linear;
+}
+
+#secret_phrase.showingPlaceholder textarea::-webkit-input-placeholder {
+	color: hsla(0, 100%, 100%, 0.5);
+	transition: none;
+}
+
+
+#secret_phrase div.entropy {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 80px;
+}
+
+#secret_phrase div.entropy * {
+	line-height: 14px;
+	color: hsl(0, 0%, 30%);
+}
+
+#secret_phrase div.entropy label.text {
+	position:absolute;
+	top: 35px;
+}
+
+#secret_phrase div.entropy label.tick {
+	position:absolute; 
+	display: block;
+	top: 0px;
+	border-left: 1px solid hsl(0, 0%, 20%);
+	height: 10px;
+	margin-left: 1px;
+}
+
+#secret_phrase div.entropy label.number {
+	position:absolute; 
+	top: 20px;
+}
+
+#secret_phrase div.entropy label.n000 { left: 0px; }
+#secret_phrase div.entropy label.n100 { left: 200px; }
+#secret_phrase div.entropy label.n150 { left: 300px; }
+#secret_phrase div.entropy label.n200 { left: 400px; }
+
+#secret_phrase div.entropy div.entropy_value {
+	height: 10px;
+	width: 0px;
+	position: absolute;
+	left: 0;
+	top: 0px;
+	display:block;
+	background-color: hsla(128, 50%, 40%, 1);
+}
+
+#secret_phrase.blank div.entropy div.entropy_value {
+	background-color: hsla(128, 50%, 40%, 0.5);
+	transition: background-color 400ms linear;
+}
+
+#secret_phrase div.entropy label.numeric_value {
+	position:absolute; 
+	right: -2px;
+	top: -2px;
+	display:block;
+	height: 15px;
+	width: 0px;
+}
+
+#secret_phrase.blank div.entropy label.numeric_value {
+	opacity: 0;
+	transition: opacity 500ms linear;
+}
+
+#secret_phrase.showingPlaceholder.blank div.entropy label.numeric_value {
+	opacity: 1;
+}
+
+#identity {
+	margin: 50px;
+}
+
+#identity > header {
+	min-height: 40px;
+}
+#identity > header h1 {
+	display: none;
+}
+#identity.expired > header h1.expired,
+#identity.calculating > header h1.calculating,
+#identity.done > header h1.done {
+	display: block;
+}
+
+#identity > header div.progress {
+	height: 5px;
+	margin: 10px 0;
+}
+#identity > header div.progress > div {
+	height: 5px;
+	background: hsla(0, 0%, 50%, 1);
+}
+#identity.blank > header div.progress > div,
+#identity.done > header div.progress > div,
+#identity.expired > header div.progress > div {
+	width: 0;
+	transition: none;
+}
+#identity.calculating > header div.progress > div {
+	width: 100%;
+	transition: width 2.3s linear;
+}
+
+#identity > div {
+	position: relative;
+	box-sizing: border-box;
+	font-size: 22px;
+	letter-spacing: 0.3px;
+	color: white;
+	margin: 10px 0 20px;
+}
+#identity.blank > div,
+#identity.blank.expired > div,
+#identity.blank.calculating > div {
+	opacity: 0;
+	transition: opacity 500ms linear;
+}
+#identity.calculating > div {
+	opacity: 0.4;
+	transition: opacity 400ms linear;
+}
+#identity.done > div {
+	opacity: 1;
+	transition: opacity 400ms linear;
+}
+#identity.expired > div {
+	opacity: 0.4;
+	transition: opacity 50ms linear;
+}
+
+#identity > div.key {
+	font-size: 10px;
+	margin: 5px 0 20px;
+	width: 350px;
+}

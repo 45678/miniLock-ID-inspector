@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<title>miniLock ID Inspector</title>
+	<link rel="stylesheet" href="inspector.css" type="text/css">
+	<!-- the following scripts are miniLock.js dependencies -->
+	<script type="application/javascript" src="js/lib/base58.js"></script>
+	<script type="application/javascript" src="js/lib/crypto/nacl.js"></script>
+	<script type="application/javascript" src="js/lib/crypto/scrypt.js"></script>
+	<script type="application/javascript" src="js/lib/zxcvbn.js"></script>
+	<!-- miniLock.js provides miniLock.crypto.getScryptKey and miniLock.crypto.getMiniLockID -->
+	<script type="application/javascript" src="js/miniLock.js"></script>
+	<!-- zepto.js and underscore.js are inspector.js dependencies -->
+	<script type="application/javascript" src="node_modules/underscore/underscore.js"></script>
+	<script type="application/javascript" src="node_modules/zepto/zepto.min.js"></script>
+	<!-- inspector.js defines the onscreen interface -->
+	<script type="application/javascript" src="inspector.js"></script>
+</head>
+<body>
+<form class="inspect_minilock_id">
+	<div id="secret_phrase" class="blank input">
+		<label>Secret Phrase</label>
+		<div class="text_container">
+			<textarea autofocus></textarea>
+		</div>
+		<div class="entropy">
+			<label class="text n000">Bits of Entropy</label>
+			<label class="text n100">Minimum</label>
+			<label class="text n150">Great</label>
+			<label class="text n200">Wicked</label>
+			<label class="tick n000"></label>
+			<label class="tick n100"></label>
+			<label class="tick n150"></label>
+			<label class="tick n200"></label>
+			<label class="number n000"></label>
+			<label class="number n100">100</label>
+			<label class="number n150">150</label>
+			<label class="number n200">200</label>
+			<div class="entropy_value"><label class="numeric_value"></label></div>
+		</div>
+	</div>
+	
+	<div id="address" class="blank input">
+		<label>Email Address</label>
+		<div class="text_container">
+			<input type="email" class="address" spellcheck="false">
+		</div>
+	</div>
+
+	<div id="identity" class="blank">
+		<header>
+			<h1 class="expired">Expired</h1>
+			<h1 class="calculating">Calculating...</h1>
+			<h1 class="done">Done in <a id="calculation_duration">1.9</a> seconds</h1>
+			<div class="progress"><div></div></div>
+		</header>
+		<h1>miniLock ID</h1>
+		<div id="miniLockID">&nbsp;</div>
+		<h1>Public Key</h1>
+		<div id="public_key" class="key">&nbsp;</div>
+		<h1>Secret Key</h1>
+		<div id="secret_key" class="key">&nbsp;</div>
+	</div>
+</form>
+</body>
+</html>

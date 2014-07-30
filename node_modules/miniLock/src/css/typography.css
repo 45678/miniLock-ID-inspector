@@ -1,0 +1,26 @@
+/* OpenSans with Inconsolata */
+
+body.opensans-inconsolata { font-family: 'Open Sans', sans-serif; }
+body.opensans-inconsolata form.process { font-size:11px; line-height: 15px; }
+body.opensans-inconsolata form.process div.name h1 { font-size: 23px; line-height: 25px; padding-bottom: 2px; }
+body.opensans-inconsolata form.process b.basename { font-weight: bold; }
+body.opensans-inconsolata form.process h2 { color: white; }
+
+body.opensans-inconsolata form.process code,
+body.opensans-inconsolata form.process div.identity input[type=text] {
+	font-family: 'Inconsolata', monospace; 
+	font-size: 16px;
+}
+
+/* Lucida Grande with Menlo */
+
+body.lucida-menlo { font-family: 'Lucida Grande', sans-serif; }
+body.lucida-menlo form.process { font-size:11px; line-height: 14px; }
+body.lucida-menlo form.process div.name h1 { font-size: 22px; line-height: 24px; padding-bottom: 2px; }
+body.lucida-menlo form.process b.basename { font-weight: bold; }
+body.lucida-menlo form.process h2 { color: white; }
+
+body.lucida-menlo form.process code,
+body.lucida-menlo form.process div.identity input[type=text] {
+	font-family: 'Menlo', monospace; font-size: 14px;
+}
