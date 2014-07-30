@@ -10,7 +10,7 @@
 body {
 	margin: 0; padding: 45px;
 	background-color: hsl(0, 0%, 10%);
-	color: hsl(0, 0%, 50%);
+	color: hsl(0, 0%, 40%);
 }
 
 body div {
@@ -108,27 +108,22 @@ div.input textarea {
 	margin: 10px 0 0;
 }
 
-#secret_phrase div.entropy * {
-	line-height: 14px;
-	color: hsl(0, 0%, 30%);
-}
-
 #secret_phrase div.entropy label.text {
 	position:absolute;
-	top: 35px;
+	bottom: 0px;
 }
 
 #secret_phrase div.entropy label.tick {
 	position:absolute; 
 	display: block;
 	top: 0px;
-	border-left: 1px solid hsl(0, 0%, 20%);
+	border-left: 1px solid hsl(0, 0%, 25%);
 	height: 10px;
 }
 
 #secret_phrase div.entropy label.number {
 	position:absolute; 
-	top: 20px;
+	bottom: 15px;
 }
 
 #secret_phrase div.entropy label.n000 { left: 0px; }
@@ -144,22 +139,24 @@ div.input textarea {
 	position: absolute;
 	left: 0px;
 	top: 0px;
-	display:block;
-	background-color: hsla(128, 50%, 50%, 0.66);
+	display: block;
+	background-color: hsla(130, 50%, 40%, 1.0);
 }
 
 #secret_phrase.blank div.entropy div.entropy_value {
-	background-color: hsla(128, 50%, 50%, 0.33);
+	background-color: hsla(130, 50%, 40%, 0.3);
 	transition: background-color 400ms linear;
 }
 
 #secret_phrase div.entropy label.numeric_value {
 	position:absolute; 
+	display: block;
 	right: -2px;
-	top: -2px;
-	display:block;
+	top: 0px;
+	line-height: 10px;
 	height: 15px;
 	width: 0px;
+	opacity: 1;
 }
 
 #secret_phrase.blank div.entropy label.numeric_value {
@@ -168,7 +165,7 @@ div.input textarea {
 }
 
 #secret_phrase.showingPlaceholder.blank div.entropy label.numeric_value {
-	opacity: 1;
+	opacity: 0.3;
 }
 
 /* Identity report */
