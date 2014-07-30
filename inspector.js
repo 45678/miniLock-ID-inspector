@@ -1,6 +1,8 @@
 $(document).ready(function(){
 'use strict';
 
+miniLock.settings.pathToSourceFiles = 'node_modules/miniLock/src'
+
 // - - - - - - - -
 // Basics
 // - - - - - - - -
