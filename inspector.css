@@ -141,11 +141,11 @@ div.input textarea {
 	left: 0px;
 	top: 0px;
 	display: block;
-	background-color: hsla(130, 50%, 40%, 1.0);
+	background-color: hsla(135, 50%, 30%, 1.0);
 }
 
 #secret_phrase.blank div.entropy div.entropy_value {
-	background-color: hsla(130, 50%, 40%, 0.3);
+	background-color: hsla(135, 50%, 40%, 0.2);
 	transition: background-color 400ms linear;
 }
 
@@ -196,7 +196,6 @@ div.input textarea {
 	display: block;
 }
 
-
 #identity > header div.progress {
 	height: 5px;
 }
@@ -215,48 +214,19 @@ div.input textarea {
 	transition: width 2.5s linear;
 }
 
+/* miniLock ID */
 
-/*#identity.blank > div,
-#identity.blank.expired > div,
-#identity.blank.calculating > div {
-	opacity: 0;
-	transition: opacity 500ms linear;
-}
-#identity.calculating > div {
-	opacity: 0.4;
-	transition: opacity 400ms linear;
-}
-#identity.done > div {
-	opacity: 1;
-	transition: opacity 400ms linear;
-}
-#identity.expired > div {
-	opacity: 0.4;
-	transition: opacity 50ms linear;
-}
-*/
-
-#identity > #miniLockID {
+#identity #miniLockID {
 	position: relative;
 	margin: 15px 0;
 }
 
-#identity.blank > #miniLockID code {
-	color: hsla(0, 0%, 85%, 0);
-	transition: color 250ms linear;
-}
-#identity.expired > #miniLockID code,
-#identity.calculating > #miniLockID code {
-	color: hsla(0, 0%, 85%, 0.1);
-	transition: none;
-}
-
-#identity > #miniLockID h1 {
+#identity #miniLockID h1 {
 	position: absolute;
 	top: -17px;
 }
 
-#identity > #miniLockID code {
+#identity #miniLockID code {
 	display: block;
 	line-height: 25px;
 	font-size: 22px;
@@ -264,14 +234,17 @@ div.input textarea {
 	color: hsla(0, 0%, 85%, 1.0);
 	transition: color 250ms linear;
 }
-
-
-
-#identity > div.key {
-	margin: 5px 0 20px;
+#identity.blank #miniLockID code {
+	color: hsla(0, 0%, 85%, 0);
+	transition: color 250ms linear;
+}
+#identity.expired #miniLockID code,
+#identity.calculating #miniLockID code {
+	color: hsla(0, 0%, 85%, 0.1);
+	transition: none;
 }
 
-
+/* Public and secret key graphics */
 
 #identity #keys {
 	margin: 0;
@@ -287,7 +260,6 @@ div.input textarea {
 	position: absolute;
 	left: 0;
 }
-
 #identity #secret_key {
 	position: absolute;
 	right: 0;
@@ -297,16 +269,19 @@ div.input textarea {
 	height: 255px;
 	line-height: 255px;
 }
-
 #identity div.graphic img {
-	border: 0px;
-	height: 255px;
 	width: 5px;
+	height: 255px;
 	vertical-align: bottom;
-	margin: 0px 2px 0px 0px;
 	background-color: hsla(0, 0%, 100%, 0.05);
+	margin: 0px 1px 0px 1px;
 }
-
+#identity div.graphic img:first-child {
+	margin: 0px 1px 0px 0px;
+}
+#identity div.graphic img:last-child {
+	margin: 0px 0px 0px 1px;
+}
 #identity.done div.graphic img {
 	background-color: hsla(0, 0%, 100%, 0.40);
 }
