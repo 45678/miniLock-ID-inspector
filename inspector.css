@@ -162,7 +162,6 @@ div.input textarea {
 
 #secret_phrase.blank div.entropy label.numeric_value {
 	opacity: 0;
-	transition: opacity 500ms linear;
 }
 
 #secret_phrase.showingPlaceholder.blank div.entropy label.numeric_value {
