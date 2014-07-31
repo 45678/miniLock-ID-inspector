@@ -1,0 +1,1 @@
+![Screenshot](https://raw.githubusercontent.com/45678/minilock-id-inspector/gh-pages/screenshot.png)
