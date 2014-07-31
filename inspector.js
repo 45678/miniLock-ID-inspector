@@ -145,6 +145,17 @@ calculateIdentity.debounced = _.debounce(calculateIdentity, 1000)
 function renderBlankIdentity() {
 	$('#identity').removeClass('calculating done expired')
 	$('#identity').addClass('blank')
+	
+	$('#miniLockID code').one('transitionend', function(){
+		$('#miniLockID code').html('&nbsp;')
+	})
+	
+	$('#keys img').one('transitionend', function(event){
+		$(event.target).css({'transition': ''})
+	}).css({
+		'height': '255px',
+		'transition': 'height 1000ms ease-out'
+	})
 }
 
 function renderCalculatingIdentity() {
@@ -163,9 +174,22 @@ function renderCalculatedIdentity(id) {
 		secretKeyArray.push(id.keys.secretKey[i])
 	}
 	$('#calculation_duration').text((id.calculationDuration/1000).toFixed(1))
-	$('#miniLockID').text(id.identity)
-	$('#public_key').text(publicKeyArray.join(' '))
-	$('#secret_key').text(secretKeyArray.join(' '))
+	$('#miniLockID code').text(id.identity)	
+	$('#public_key_graphic img').each(function(index, tag){
+		$(tag).css({
+			'height': publicKeyArray[index] + 'px',
+			'transition': 'height 300ms ease-out '+((index*15)+0)+'ms, background-color 0ms linear '+((index*15)+0)+'ms'
+		})
+	})
+	$('#private_key_graphic img').each(function(index, tag){
+		$(tag).css({
+			'height': secretKeyArray[index] + 'px',
+			'transition': 'height 300ms ease-out '+((index*15)+510)+'ms, background-color 0ms linear '+((index*15)+510)+'ms'
+		})
+	})
+	setTimeout(function(){
+		$('#keys img').css({'transition': ''})
+	}, 1500)
 }
 
 function renderExpiredIdentity() {

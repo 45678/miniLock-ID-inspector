@@ -25,6 +25,15 @@ body h1 {
 	line-height: inherit;
 }
 
+body input, body textarea, body code {
+	display: block;
+	box-sizing: border-box;
+	line-height: 24px;
+	font-size: 22px;
+	letter-spacing: -0.1px;
+	font-family: inherit;
+}
+
 /* Layout of the inspect id form */
 
 #inspect_id_form {
@@ -40,10 +49,10 @@ body h1 {
 	margin: 0px 0 45px;
 }
 #inspect_id_form #secret_phrase {
-	/*height: 130px;*/
+	/*height: 90px;*/
 }
 #inspect_id_form #address {
-	height: 45px 0;
+	/*height: 45px;*/
 }
 
 /* Styles shared by secret phrase and address inputs */
@@ -55,29 +64,21 @@ div.input {
 div.input > label {
 	position: absolute;
 	display: block;
-	top: -15px;
+	top: -17px;
 }
 
 div.input > div.text_container {
-/*	position: absolute;*/
 	display: block;
 	margin-left: -10px;
 	margin-right: -10px;
-
 }
 
 div.input input,
 div.input textarea {
-	display: block;
-	box-sizing: border-box;
 	width: 100%;
 	margin: 0;
 	border: 1px solid hsl(0, 0%, 20%);
 	padding: 9px;
-	line-height: 24px;
-	font-size: 22px;
-	letter-spacing: -0.1px;
-	font-family: inherit;
 	color: hsl(0, 0%, 85%);
 	background-color: black;
 }
@@ -93,7 +94,7 @@ div.input textarea::-webkit-input-placeholder  {
 }
 div.input.showingPlaceholder input::-webkit-input-placeholder,
 div.input.showingPlaceholder textarea::-webkit-input-placeholder {
-	color: hsla(0, 100%, 100%, 0.5);
+	color: hsla(0, 100%, 100%, 0.4);
 	transition: none;
 }
 
@@ -172,19 +173,29 @@ div.input textarea {
 
 #identity {
 	margin: 0;
+	border-top: 1px solid hsla(0, 0%, 100%, 0.1);
+}
+
+#identity h1 {
+	color: inherit;
+}
+#identity.blank h1 {
+	color: hsla(0, 0%, 85%, 0.1);
 }
 
 #identity > header {
-	height: 20px;
+	height: 15px;
 }
-
 #identity > header h1 {
 	display: none;
+	position: absolute;
+	top: -17px;
 }
 #identity.calculating > header h1.calculating,
 #identity.done > header h1.done {
 	display: block;
 }
+
 
 #identity > header div.progress {
 	height: 5px;
@@ -203,13 +214,9 @@ div.input textarea {
 	width: 100%;
 	transition: width 2.5s linear;
 }
-#identity > h1 {
-	margin: 20px 0 5px;
-}
-#identity > div {
-	margin: 0;
-}
-#identity.blank > div,
+
+
+/*#identity.blank > div,
 #identity.blank.expired > div,
 #identity.blank.calculating > div {
 	opacity: 0;
@@ -227,17 +234,79 @@ div.input textarea {
 	opacity: 0.4;
 	transition: opacity 50ms linear;
 }
+*/
 
 #identity > #miniLockID {
 	position: relative;
-	box-sizing: border-box;
-	font-size: 22px;
-	letter-spacing: -0.1px;
-	color: white;
+	margin: 15px 0;
 }
 
+#identity.blank > #miniLockID code {
+	color: hsla(0, 0%, 85%, 0);
+	transition: color 250ms linear;
+}
+#identity.expired > #miniLockID code,
+#identity.calculating > #miniLockID code {
+	color: hsla(0, 0%, 85%, 0.1);
+	transition: none;
+}
+
+#identity > #miniLockID h1 {
+	position: absolute;
+	top: -17px;
+}
+
+#identity > #miniLockID code {
+	display: block;
+	line-height: 25px;
+	font-size: 22px;
+	letter-spacing: -0.1px;
+	color: hsla(0, 0%, 85%, 1.0);
+	transition: color 250ms linear;
+}
+
+
+
 #identity > div.key {
-	font-size: 10px;
 	margin: 5px 0 20px;
-	width: 350px;
+}
+
+
+
+#identity #keys {
+	margin: 0;
+	height: 255px;
+}
+
+#identity #keys div.key h1 {
+	position: absolute;
+	bottom: -17px;
+}
+
+#identity #public_key {
+	position: absolute;
+	left: 0;
+}
+
+#identity #secret_key {
+	position: absolute;
+	right: 0;
+}
+
+#identity #keys div.graphic {
+	height: 255px;
+	line-height: 255px;
+}
+
+#identity div.graphic img {
+	border: 0px;
+	height: 255px;
+	width: 5px;
+	vertical-align: bottom;
+	margin: 0px 2px 0px 0px;
+	background-color: hsla(0, 0%, 100%, 0.05);
+}
+
+#identity.done div.graphic img {
+	background-color: hsla(0, 0%, 100%, 0.40);
 }
