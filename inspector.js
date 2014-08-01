@@ -1,7 +1,7 @@
 $(document).ready(function(){
 'use strict';
 
-miniLock.settings.pathToSourceFiles = 'node_modules/miniLock/src'
+miniLockLib.pathToScripts = 'node_modules/miniLockLib'
 
 // - - - - - - - -
 // Basics
@@ -131,7 +131,7 @@ function calculateIdentity() {
 				renderCalculatedIdentity({
 					secretPhrase: secretPhrase,
 					address: address,
-					identity: miniLock.crypto.getMiniLockID(keys.publicKey),
+					identity: miniLockLib.makeID(keys.publicKey),
 					keys: keys,
 					calculationDuration: Date.now() - calculationStartedAt
 				})
@@ -198,11 +198,7 @@ function renderExpiredIdentity() {
 }
 
 function getKeyPair(key, salt, callback) {
-	key = nacl.hash(nacl.util.decodeUTF8(key))
-	salt = nacl.util.decodeUTF8(salt)
-	miniLock.crypto.getScryptKey(key, salt, function(keyBytes) {
-		callback(nacl.box.keyPair.fromSecretKey(keyBytes))
-	})
+	miniLockLib.getKeyPair(key, salt, callback)
 }
 
 })
