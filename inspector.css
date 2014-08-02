@@ -108,9 +108,25 @@ div.input textarea {
 	height: 15px;
 }
 
+#secret_phrase div.ratings label.tick {
+	position: absolute;
+	top: -14px;
+	bottom: -14px;
+}
+#secret_phrase div.ratings label.start.tick {
+	left: 0;
+	border-left: 1px solid hsl(0, 0%, 25%);
+	z-index: -2;
+}
+#secret_phrase div.ratings label.end.tick {
+	right: 0;
+	border-right: 1px solid hsl(0, 0%, 25%);
+}
+
+
 #secret_phrase div.ratings label.text {
-	position:absolute;
-	bottom: 0px;
+	position: absolute;
+	top: 0px;
 }
 
 #secret_phrase div.ratings label.n000 { left: 0px; }
@@ -136,7 +152,7 @@ div.input textarea {
 	position:absolute; 
 	display: block;
 	bottom: 1px;
-	border-left: 1px solid hsl(0, 0%, 25%);
+	border-right: 1px solid hsl(0, 0%, 25%);
 	height: 13px;
 }
 
@@ -212,7 +228,7 @@ div.input textarea {
 	position:absolute; 
 	display: block;
 	top: 1px;
-	border-left: 1px solid hsl(0, 0%, 25%);
+	border-right: 1px solid hsl(0, 0%, 25%);
 	height: 13px;
 }
 
