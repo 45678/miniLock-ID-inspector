@@ -26,9 +26,9 @@ $(document).on('input', '#secret_phrase', function(event) {
 
 // Classify acceptable secret phrase when entropy exceeds minimum. 
 $(document).on('input', '#secret_phrase', function(event) {
-	var secretPhrase = $('#secret_phrase textarea').val()
-	var entropy = Math.floor(zxcvbn(secretPhrase).entropy)
-	$('#secret_phrase').toggleClass('acceptable', entropy >= 100)
+	$('#secret_phrase').toggleClass('acceptable', 
+		miniLockLib.secretPhraseIsAcceptable($('#secret_phrase textarea').val())
+	)
 })
 
 var anim = {stopped: true, stepDuration: 20, firstStepDelay: 100}
