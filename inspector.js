@@ -24,16 +24,28 @@ $(document).on('input', '#secret_phrase', function(event) {
 	$(event.currentTarget).toggleClass('blank', $(event.target).val() === '')
 })
 
-// Classify acceptable secret phrase when entropy exceeds minimum. 
+// Classify acceptable secret phrase when it meets minimum standards. 
 $(document).on('input', '#secret_phrase', function(event) {
 	$('#secret_phrase').toggleClass('acceptable', 
 		miniLockLib.secretPhraseIsAcceptable($('#secret_phrase textarea').val())
 	)
 })
 
+$(document).on('input', '#secret_phrase', function(event) {
+	$('#secret_phrase').toggleClass('acceptable_length', 
+		$('#secret_phrase textarea').val().length >= 32
+	)
+})
+
+$(document).on('input', '#secret_phrase', function(event) {
+	$('#secret_phrase').toggleClass('acceptable_entropy', 
+		Math.floor(zxcvbn($('#secret_phrase textarea').val()).entropy) >= 100
+	)
+})
+
 var anim = {stopped: true, stepDuration: 20, firstStepDelay: 100}
 
-anim.placeholder = "Type a secret phrase to measure its entropy"
+anim.placeholder = "Type a secret phrase to measure it"
 
 anim.start = function() {
 	if (anim.stopped) {
@@ -42,6 +54,7 @@ anim.start = function() {
 		$('#secret_phrase').addClass('showingPlaceholder')
 		anim.stopped = false
 		setTimeout(anim.step, anim.firstStepDelay)
+		renderLength('')
 		renderEntropy('')
 	}
 }
@@ -50,6 +63,7 @@ anim.step = function() {
 	anim.index = anim.index + 1
 	var phrase = anim.placeholder.substr(0, anim.index)
 	$('#secret_phrase textarea').attr('placeholder', phrase)
+	renderLength(phrase)
 	renderEntropy(phrase)
 	if (anim.index < anim.placeholder.length) {
 		setTimeout(anim.step, anim.stepDuration)
@@ -60,6 +74,7 @@ anim.step = function() {
 anim.stop = function() {
 	if (anim.stopped === false) {
 		$('#secret_phrase').removeClass('showingPlaceholder')
+		renderLength('')
 		renderEntropy('')
 		anim.stopped = true
 	}
@@ -84,13 +99,34 @@ $(document).on('focusout', '#secret_phrase', function(event) {
 $(document).on('input', '#secret_phrase', function(event) {
 	var secretPhrase = $('#secret_phrase textarea').val()
 	if (secretPhrase !== '') anim.stop()
+	renderLength(event.target.value)
 	renderEntropy(event.target.value)
 })
+
+function renderLength(secretPhrase) {
+	var previouslyMeasuredPhraseLength = renderLength.previouslyMeasuredPhraseLength || 0
+	var length = secretPhrase.length
+	var oldWidth = $('#secret_phrase div.length div.length_value').width()
+	var newWidth = length * 6.25
+	var distance = Math.abs(oldWidth - newWidth)
+	var duration = distance * 1.4
+	var delay = 0
+	if (secretPhrase.length === 0 && previouslyMeasuredPhraseLength.length > 1) {
+		delay = 250
+		duration = duration * 2
+	}
+	$('#secret_phrase div.length div.length_value').css({
+		width: newWidth + 'px',
+		transition: 'width '+duration+'ms ease-out '+delay+'ms'
+	})
+	$('#secret_phrase div.length label.numeric_value').text(length)
+	renderLength.previouslyMeasuredPhraseLength = length
+}
 
 function renderEntropy(secretPhrase) {
 	var previouslyMeasuredSecretPhrase = renderEntropy.previouslyMeasuredSecretPhrase || 0
 	var entropy = Math.floor(zxcvbn(secretPhrase).entropy)
-	var oldWidth = $('div.entropy div.entropy_value').width()
+	var oldWidth = $('#secret_phrase div.entropy div.entropy_value').width()
 	var newWidth = entropy * 2
 	var distance = Math.abs(oldWidth - newWidth)
 	var duration = distance * 1.4
@@ -98,15 +134,12 @@ function renderEntropy(secretPhrase) {
 	if (secretPhrase.length === 0 && previouslyMeasuredSecretPhrase.length > 1) {
 		delay = 250
 		duration = duration * 2
-	} else {
-		$('div.entropy label.numeric_value').text(
-			(entropy === 0) ? entropy : entropy
-		)
 	}
-	$('div.entropy div.entropy_value').css({
+	$('#secret_phrase div.entropy div.entropy_value').css({
 		width: newWidth + 'px',
 		transition: 'width '+duration+'ms ease-out '+delay+'ms'
 	})
+	$('#secret_phrase div.entropy label.numeric_value').text(entropy)
 	renderEntropy.previouslyMeasuredSecretPhrase = secretPhrase
 }
 

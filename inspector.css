@@ -102,11 +102,105 @@ div.input textarea {
 	resize:vertical;
 }
 
+/* Secret phrase graphics */
+
+#secret_phrase div.ratings {
+	height: 15px;
+}
+
+#secret_phrase div.ratings label.text {
+	position:absolute;
+	bottom: 0px;
+}
+
+#secret_phrase div.ratings label.n000 { left: 0px; }
+#secret_phrase div.ratings label.n100 { left: 200px; }
+#secret_phrase div.ratings label.n150 { left: 300px; }
+#secret_phrase div.ratings label.n200 { left: 400px; }
+#secret_phrase div.ratings label.n250 { left: 500px; }
+
+
+/* Secret phrase length graphic */
+
+#secret_phrase div.length {
+	height: 30px;
+	margin: 10px 0 0;
+}
+
+#secret_phrase div.length label.text {
+	position:absolute;
+	top: 0px;
+}
+
+#secret_phrase div.length label.tick {
+	position:absolute; 
+	display: block;
+	bottom: 1px;
+	border-left: 1px solid hsl(0, 0%, 25%);
+	height: 13px;
+}
+
+#secret_phrase div.length label.number {
+	position:absolute; 
+	bottom: 15px;
+}
+
+#secret_phrase div.length label.n000 { left: 0px; }
+#secret_phrase div.length label.n100 { left: 200px; }
+#secret_phrase div.length label.n150 { left: 300px; }
+#secret_phrase div.length label.n200 { left: 400px; }
+#secret_phrase div.length label.n250 { left: 500px; }
+
+#secret_phrase div.length div.length_value {
+	z-index: -1;
+	height: 13px;
+	width: 0px;
+	position: absolute;
+	left: 0px;
+	bottom: 1px;
+	display: block;
+}
+
+#secret_phrase div.length_value_fill {
+	background: hsla(135, 0%, 30%, 1.0);
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	bottom: 0px;
+	right: 0px;
+}
+#secret_phrase.blank div.length_value_fill {
+	background: hsla(135, 0%, 40%, 0.2);
+	transition: background 400ms linear;
+}
+#secret_phrase.acceptable_length div.length_value_fill {
+	background: hsla(135, 50%, 30%, 1.0);
+	transition: background 400ms linear;
+}
+
+#secret_phrase div.length div.length_value label.numeric_value {
+	position:absolute; 
+	display: none;
+	right: -2px;
+	bottom: 0px;
+	line-height: 15px;
+	height: 15px;
+	width: 0px;
+	opacity: 1;
+}
+
+#secret_phrase.blank div.length div.length_value label.numeric_value {
+	opacity: 0;
+}
+
+#secret_phrase.showingPlaceholder.blank div.length div.length_value label.numeric_value {
+	opacity: 0.3;
+}
+
 /* Secret phrase entropy graphic */
 
 #secret_phrase div.entropy {
-	height: 45px;
-	margin: 10px 0 0;
+	height: 30px;
 }
 
 #secret_phrase div.entropy label.text {
@@ -117,14 +211,14 @@ div.input textarea {
 #secret_phrase div.entropy label.tick {
 	position:absolute; 
 	display: block;
-	top: 0px;
+	top: 1px;
 	border-left: 1px solid hsl(0, 0%, 25%);
-	height: 10px;
+	height: 13px;
 }
 
 #secret_phrase div.entropy label.number {
 	position:absolute; 
-	bottom: 15px;
+	bottom: 0px;
 }
 
 #secret_phrase div.entropy label.n000 { left: 0px; }
@@ -135,40 +229,47 @@ div.input textarea {
 
 #secret_phrase div.entropy div.entropy_value {
 	z-index: -1;
-	height: 10px;
+	height: 13px;
 	width: 0px;
 	position: absolute;
 	left: 0px;
-	top: 0px;
+	top: 1px;
 	display: block;
+}
+
+#secret_phrase div.entropy_value_fill {
 	background-color: hsla(135, 0%, 30%, 1.0);
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	bottom: 0px;
+	right: 0px;
 }
-
-#secret_phrase.acceptable div.entropy div.entropy_value {
+#secret_phrase.acceptable_entropy div.entropy_value_fill {
 	background-color: hsla(135, 50%, 30%, 1.0);
+	transition: background-color 400ms linear;
 }
-
-#secret_phrase.blank div.entropy div.entropy_value {
+#secret_phrase.blank div.entropy_value_fill {
 	background-color: hsla(135, 0%, 40%, 0.2);
 	transition: background-color 400ms linear;
 }
 
-#secret_phrase div.entropy label.numeric_value {
+#secret_phrase div.entropy div.entropy_value label.numeric_value {
 	position:absolute; 
-	display: block;
+	display: none;
 	right: -2px;
 	top: 0px;
-	line-height: 10px;
+	line-height: 15px;
 	height: 15px;
 	width: 0px;
 	opacity: 1;
 }
 
-#secret_phrase.blank div.entropy label.numeric_value {
+#secret_phrase.blank div.entropy div.entropy_value label.numeric_value {
 	opacity: 0;
 }
 
-#secret_phrase.showingPlaceholder.blank div.entropy label.numeric_value {
+#secret_phrase.showingPlaceholder.blank div.entropy div.entropy_value label.numeric_value {
 	opacity: 0.3;
 }
 
