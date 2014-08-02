@@ -141,11 +141,15 @@ div.input textarea {
 	left: 0px;
 	top: 0px;
 	display: block;
+	background-color: hsla(135, 0%, 30%, 1.0);
+}
+
+#secret_phrase.acceptable div.entropy div.entropy_value {
 	background-color: hsla(135, 50%, 30%, 1.0);
 }
 
 #secret_phrase.blank div.entropy div.entropy_value {
-	background-color: hsla(135, 50%, 40%, 0.2);
+	background-color: hsla(135, 0%, 40%, 0.2);
 	transition: background-color 400ms linear;
 }
 
