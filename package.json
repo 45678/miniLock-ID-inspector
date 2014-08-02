@@ -5,6 +5,10 @@
   "main": "index.html",
   "author": "undefined@undefined",
   "license": "Public Domain",
+  "repository": {
+    "type": "git",
+    "url": "git+https://git@github.com/45678/miniLock-id-inspector.git"
+  },
   "dependencies": {
     "miniLockLib": "git+https://git@github.com/45678/miniLockLib.git",
     "underscore": "^1.6.0",
