@@ -1,8 +1,6 @@
 $(document).ready(function(){
 'use strict';
 
-miniLockLib.pathToScripts = 'node_modules/miniLockLib'
-
 // - - - - - - - -
 // Basics
 // - - - - - - - -
@@ -169,7 +167,7 @@ function calculateIdentity() {
 				renderCalculatedIdentity({
 					secretPhrase: secretPhrase,
 					address: address,
-					identity: miniLockLib.makeID(keys.publicKey),
+					identity: miniLockLib.ID.encode(keys.publicKey),
 					keys: keys,
 					calculationDuration: Date.now() - calculationStartedAt
 				})
