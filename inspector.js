@@ -1,3 +1,7 @@
+if (location.hostname === "45678.github.io" && location.protocol !== "https:") {
+  window.location = location.toString().replace("http:", "https:")
+}
+
 $(document).ready(function(){
 'use strict';
 
@@ -22,21 +26,21 @@ $(document).on('input', '#secret_phrase', function(event) {
 	$(event.currentTarget).toggleClass('blank', $(event.target).val() === '')
 })
 
-// Classify acceptable secret phrase when it meets minimum standards. 
+// Classify acceptable secret phrase when it meets minimum standards.
 $(document).on('input', '#secret_phrase', function(event) {
-	$('#secret_phrase').toggleClass('acceptable', 
+	$('#secret_phrase').toggleClass('acceptable',
 		miniLockLib.secretPhraseIsAcceptable($('#secret_phrase textarea').val())
 	)
 })
 
 $(document).on('input', '#secret_phrase', function(event) {
-	$('#secret_phrase').toggleClass('acceptable_length', 
+	$('#secret_phrase').toggleClass('acceptable_length',
 		$('#secret_phrase textarea').val().length >= 32
 	)
 })
 
 $(document).on('input', '#secret_phrase', function(event) {
-	$('#secret_phrase').toggleClass('acceptable_entropy', 
+	$('#secret_phrase').toggleClass('acceptable_entropy',
 		Math.floor(zxcvbn($('#secret_phrase textarea').val()).entropy) >= 100
 	)
 })
@@ -78,7 +82,7 @@ anim.stop = function() {
 	}
 }
 
-// When the secret phrase input is focused, start the 
+// When the secret phrase input is focused, start the
 // placeholder animation if the input is blank.
 $(document).on('focusin', '#secret_phrase', function(event) {
 	var secretPhrase = $('#secret_phrase textarea').val()
@@ -181,11 +185,11 @@ calculateIdentity.debounced = _.debounce(calculateIdentity, 1000)
 function renderBlankIdentity() {
 	$('#identity').removeClass('calculating done expired')
 	$('#identity').addClass('blank')
-	
+
 	$('#miniLockID code').one('transitionend', function(){
 		$('#miniLockID code').html('&nbsp;')
 	})
-	
+
 	$('#keys img').one('transitionend', function(event){
 		$(event.target).css({'transition': ''})
 	}).css({
@@ -210,7 +214,7 @@ function renderCalculatedIdentity(id) {
 		secretKeyArray.push(id.keys.secretKey[i])
 	}
 	$('#calculation_duration').text((id.calculationDuration/1000).toFixed(1))
-	$('#miniLockID code').text(id.identity)	
+	$('#miniLockID code').text(id.identity)
 	$('#public_key_graphic img').each(function(index, tag){
 		$(tag).css({
 			'height': publicKeyArray[index] + 'px',
