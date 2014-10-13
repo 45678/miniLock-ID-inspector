@@ -3,9 +3,10 @@
 	<meta charset="utf-8">
 	<title>miniLock ID Inspector</title>
 	<link rel="stylesheet" href="inspector.css" type="text/css">
-	<script type="application/javascript" src="node_modules/miniLockLib/scripts/miniLockLib.js"></script>
+	<script type="application/javascript" src="node_modules/miniLockLib/miniLockLib.js"></script>
 	<script type="application/javascript" src="node_modules/underscore/underscore.js"></script>
 	<script type="application/javascript" src="node_modules/zepto/zepto.min.js"></script>
+	<script type="application/javascript" src="node_modules/entropizer/dist/entropizer.js"></script>
 	<script type="application/javascript" src="inspector.js"></script>
 </head>
 <body>
@@ -34,16 +35,16 @@
 		</div>
 		<div class="entropy">
 			<label class="text n000"><label class="numeric_value">0</label> bits of entropy</label>
-			<label class="number n100">100</label>
-			<label class="number n150">150</label>
-			<label class="number n200">200</label>
+			<label class="number n100">200</label>
+			<label class="number n150">300</label>
+			<label class="number n200">400</label>
 			<label class="tick n100"></label>
 			<label class="tick n150"></label>
 			<label class="tick n200"></label>
 			<div class="entropy_value"><div class="entropy_value_fill"></div><label class="numeric_value"></label></div>
 		</div>
 	</div>
-	
+
 	<div id="address" class="blank input">
 		<label>Email Address</label>
 		<div class="text_container">

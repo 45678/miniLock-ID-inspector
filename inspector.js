@@ -29,7 +29,7 @@ $(document).on('input', '#secret_phrase', function(event) {
 // Classify acceptable secret phrase when it meets minimum standards.
 $(document).on('input', '#secret_phrase', function(event) {
 	$('#secret_phrase').toggleClass('acceptable',
-		miniLockLib.secretPhraseIsAcceptable($('#secret_phrase textarea').val())
+		miniLockLib.SecretPhrase.isAcceptable($('#secret_phrase textarea').val())
 	)
 })
 
@@ -40,9 +40,9 @@ $(document).on('input', '#secret_phrase', function(event) {
 })
 
 $(document).on('input', '#secret_phrase', function(event) {
-	$('#secret_phrase').toggleClass('acceptable_entropy',
-		Math.floor(zxcvbn($('#secret_phrase textarea').val()).entropy) >= 100
-	)
+	var phrase = $('#secret_phrase textarea').val()
+	var entropy = (new miniLockLib.Entropizer).evaluate(phrase)
+	$('#secret_phrase').toggleClass('acceptable_entropy', entropy >= 200)
 })
 
 var anim = {stopped: true, stepDuration: 20, firstStepDelay: 100}
@@ -127,9 +127,9 @@ function renderLength(secretPhrase) {
 
 function renderEntropy(secretPhrase) {
 	var previouslyMeasuredSecretPhrase = renderEntropy.previouslyMeasuredSecretPhrase || 0
-	var entropy = Math.floor(zxcvbn(secretPhrase).entropy)
+	var entropy = Math.floor((new miniLockLib.Entropizer).evaluate(secretPhrase))
 	var oldWidth = $('#secret_phrase div.entropy div.entropy_value').width()
-	var newWidth = entropy * 2
+	var newWidth = entropy
 	var distance = Math.abs(oldWidth - newWidth)
 	var duration = distance * 1.4
 	var delay = 0
@@ -165,7 +165,7 @@ function calculateIdentity() {
 	var address = $('#address input').val()
 	if (secretPhrase && address) {
 		renderCalculatingIdentity()
-		getKeyPair(secretPhrase, address, function(keys){
+		getKeyPair(secretPhrase, address, function(error, keys){
 			if (secretPhrase === $('#secret_phrase textarea').val()) {
 				var id = {}
 				renderCalculatedIdentity({
@@ -237,8 +237,8 @@ function renderExpiredIdentity() {
 	$('#identity').addClass('expired')
 }
 
-function getKeyPair(key, salt, callback) {
-	miniLockLib.getKeyPair(key, salt, callback)
+function getKeyPair(secret, salt, callback) {
+	miniLockLib.makeKeyPair(secret, salt, callback)
 }
 
 })
