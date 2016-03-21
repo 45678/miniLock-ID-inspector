@@ -17,32 +17,26 @@ $(document).on('focusout', '#secret_phrase,#address', function(event) {
 	$(event.currentTarget).removeClass('focused')
 })
 
+// Classify blank input.
+$(document).on('input', '#secret_phrase,#address', function(event) {
+	event.currentTarget.classList.toggle('blank', (event.target.value === ''))
+})
+
 // - - - - - - - -
 // Secret Phrase
 // - - - - - - - -
 
-// Update secret phrase classification when input changes.
+// Classify secret phrase input as acceptable or unacceptable.
 $(document).on('input', '#secret_phrase', function(event) {
-	$(event.currentTarget).toggleClass('blank', $(event.target).val() === '')
-})
-
-// Classify acceptable secret phrase when it meets minimum standards.
-$(document).on('input', '#secret_phrase', function(event) {
-	$('#secret_phrase').toggleClass('acceptable',
-		miniLockLib.SecretPhrase.isAcceptable($('#secret_phrase textarea').val())
-	)
-})
-
-$(document).on('input', '#secret_phrase', function(event) {
-	$('#secret_phrase').toggleClass('acceptable_length',
-		$('#secret_phrase textarea').val().length >= 32
-	)
-})
-
-$(document).on('input', '#secret_phrase', function(event) {
-	var phrase = $('#secret_phrase textarea').val()
-	var entropy = (new miniLockLib.Entropizer).evaluate(phrase)
-	$('#secret_phrase').toggleClass('acceptable_entropy', entropy >= 200)
+  var secretPhrase = event.currentTarget
+  var input = event.target.value
+  var length = input.length
+  var entropy = (new miniLockLib.Entropizer).evaluate(input)
+  var acceptable = miniLockLib.SecretPhrase.isAcceptable(input)
+  secretPhrase.classList.toggle("unacceptable", acceptable === false)
+  secretPhrase.classList.toggle('acceptable_length', length >= 32)
+  secretPhrase.classList.toggle('acceptable_entropy', entropy >= 200)
+  secretPhrase.classList.toggle("acceptable", acceptable === true)
 })
 
 var anim = {stopped: true, stepDuration: 20, firstStepDelay: 100}
@@ -156,7 +150,11 @@ $(document).on('input', '#secret_phrase,#address', function(){
 	} else {
 		renderExpiredIdentity()
 	}
-	calculateIdentity.debounced()
+  if ($('#secret_phrase')[0].classList.contains('unacceptable')) {
+    // render explaination of unacceptabledless.
+  } else {
+    calculateIdentity.debounced()
+  }
 })
 
 function calculateIdentity() {
@@ -166,7 +164,9 @@ function calculateIdentity() {
 	if (secretPhrase && address) {
 		renderCalculatingIdentity()
 		getKeyPair(secretPhrase, address, function(error, keys){
-			if (secretPhrase === $('#secret_phrase textarea').val()) {
+      if (error) {
+        console.info(error)
+      } else {
 				var id = {}
 				renderCalculatedIdentity({
 					secretPhrase: secretPhrase,
@@ -174,8 +174,8 @@ function calculateIdentity() {
 					identity: miniLockLib.ID.encode(keys.publicKey),
 					keys: keys,
 					calculationDuration: Date.now() - calculationStartedAt
-				})
-			}
+  			})
+      }
 		})
 	}
 }
