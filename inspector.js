@@ -121,7 +121,7 @@ function renderLength(secretPhrase) {
 		width: newWidth + 'px',
 		transition: 'width '+duration+'ms ease-out '+delay+'ms'
 	})
-	$('#secret_phrase div.length label.numeric_value').text(length)
+	$('#secret_phrase div.length span.numeric_value').text(length)
 	renderLength.previouslyMeasuredPhraseLength = length
 }
 
@@ -141,7 +141,7 @@ function renderEntropy(secretPhrase) {
 		width: newWidth + 'px',
 		transition: 'width '+duration+'ms ease-out '+delay+'ms'
 	})
-	$('#secret_phrase div.entropy label.numeric_value').text(entropy)
+	$('#secret_phrase div.entropy span.numeric_value').text(entropy)
 	renderEntropy.previouslyMeasuredSecretPhrase = secretPhrase
 }
 

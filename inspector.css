@@ -149,7 +149,7 @@ div.input textarea {
 }
 
 #secret_phrase div.length label.tick {
-	position:absolute; 
+	position:absolute;
 	display: block;
 	bottom: 1px;
 	border-right: 1px solid hsl(0, 0%, 25%);
@@ -157,7 +157,7 @@ div.input textarea {
 }
 
 #secret_phrase div.length label.number {
-	position:absolute; 
+	position:absolute;
 	bottom: 15px;
 }
 
@@ -194,8 +194,8 @@ div.input textarea {
 	transition: background 400ms linear;
 }
 
-#secret_phrase div.length div.length_value label.numeric_value {
-	position:absolute; 
+#secret_phrase div.length div.length_value .numeric_value {
+	position:absolute;
 	display: none;
 	right: -2px;
 	bottom: 0px;
@@ -205,11 +205,11 @@ div.input textarea {
 	opacity: 1;
 }
 
-#secret_phrase.blank div.length div.length_value label.numeric_value {
+#secret_phrase.blank div.length div.length_value .numeric_value {
 	opacity: 0;
 }
 
-#secret_phrase.showingPlaceholder.blank div.length div.length_value label.numeric_value {
+#secret_phrase.showingPlaceholder.blank div.length div.length_value .numeric_value {
 	opacity: 0.3;
 }
 
@@ -225,7 +225,7 @@ div.input textarea {
 }
 
 #secret_phrase div.entropy label.tick {
-	position:absolute; 
+	position:absolute;
 	display: block;
 	top: 1px;
 	border-right: 1px solid hsl(0, 0%, 25%);
@@ -233,7 +233,7 @@ div.input textarea {
 }
 
 #secret_phrase div.entropy label.number {
-	position:absolute; 
+	position:absolute;
 	bottom: 0px;
 }
 
@@ -271,7 +271,7 @@ div.input textarea {
 }
 
 #secret_phrase div.entropy div.entropy_value label.numeric_value {
-	position:absolute; 
+	position:absolute;
 	display: none;
 	right: -2px;
 	top: 0px;
